@@ -12,10 +12,16 @@ namespace heroApi.Controllers
     [ApiController]
     public class HeroController : ControllerBase
     {
+        private List<Hero> Heroes = CreateHeroes(20);
         // GET: api/Hero
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            foreach(Hero hero in Heroes)
+            {
+                Console.WriteLine($"{hero.id} : {hero.name}");
+            }
+            
             return new string[] { "value1", "value2" };
         }
 
@@ -42,6 +48,17 @@ namespace heroApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        private static List<Hero> CreateHeroes(int numHeroes)
+        {
+
+            List<Hero> heroes = new List<Hero>();
+            for(int i = 0;i < numHeroes; i++)
+            {
+                heroes.Add(new Hero(i, "Hero " + i));
+            }
+            return heroes;
         }
     }
 }
