@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace heroApi.Models
 {
@@ -12,7 +13,7 @@ namespace heroApi.Models
         public static List<Hero> HeroList = new List<Hero>();
         private static int maxId = 0;
         
-
+        
         public Hero(int _id,string _name)
         {
             id = _id;
@@ -23,7 +24,7 @@ namespace heroApi.Models
             }
             HeroList.Add(this);
         }
-
+        [JsonConstructor]
         public Hero(string _name)
         {
             name = _name;
@@ -56,6 +57,14 @@ namespace heroApi.Models
             }
 
             return null;
+        }
+
+        public static void LogHeroes()
+        {
+            foreach (Hero hero in HeroList)
+            {
+                Console.WriteLine($"{hero.id} : {hero.name}");
+            }
         }
     }
 }
