@@ -13,23 +13,25 @@ namespace heroApi.Controllers
     public class HeroController : ControllerBase
     {
         private List<Hero> Heroes = CreateHeroes(20);
+
         // GET: api/Hero
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Hero> Get()
         {
             foreach(Hero hero in Heroes)
             {
                 Console.WriteLine($"{hero.id} : {hero.name}");
             }
             
-            return new string[] { "value1", "value2" };
+            return Heroes;
         }
 
         // GET: api/Hero/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [Route("{id}")]
+        public Hero Get(int id)
         {
-            return "value";
+            
+            return Hero.FindHero(id);
         }
 
         // POST: api/Hero

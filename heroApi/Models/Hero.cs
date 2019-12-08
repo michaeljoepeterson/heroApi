@@ -44,5 +44,18 @@ namespace heroApi.Models
 
             return maxId;
         }
+
+        public static Hero FindHero(int _id)
+        {
+            for (int i = 0; i < HeroList.Count; i++)
+            {
+                if (HeroList[i].id == _id)
+                {
+                    return HeroList[i];
+                }
+            }
+
+            return null;
+        }
     }
 }
