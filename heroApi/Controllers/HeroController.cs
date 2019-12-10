@@ -45,7 +45,7 @@ namespace heroApi.Controllers
 
         // POST: api/Hero
         [HttpPost]
-        public void Post([FromBody] dynamic value)
+        public string Post([FromBody] dynamic value)
         {
             string json = value.ToString();
             Hero newHero = JsonConvert.DeserializeObject<Hero>(json);
@@ -53,6 +53,7 @@ namespace heroApi.Controllers
             Console.WriteLine(newHero.name + " " + newHero.id);
             Console.WriteLine($"heroes size {ModelDB.Heroes.Count} {Hero.HeroList.Count}");
             ModelDB.LogHeroes();
+            return "Hero Created";
         }
 
         // PUT: api/Hero/5
@@ -64,8 +65,10 @@ namespace heroApi.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public string Delete(int id)
         {
+            string result = ModelDB.DeleteHero(id);
+            return result;
         }
 
     }

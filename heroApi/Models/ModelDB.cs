@@ -31,7 +31,7 @@ namespace heroApi.Models
             }
         }
 
-        public string DeleteHero(int _id)
+        public static string DeleteHero(int _id)
         {
             int index = -1;
 
