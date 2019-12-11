@@ -28,7 +28,7 @@ namespace heroApi.Models
         public Hero(string _name)
         {
             name = _name;
-            id = checkMaxID();
+            id = -1;
             HeroList.Add(this);
         }
         //check if max id taken if id not passed

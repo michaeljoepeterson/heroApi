@@ -29,6 +29,8 @@ namespace heroApi.Models
             {
                 Heroes.Add(new Hero(i, "Hero " + i));
             }
+
+            maxId = numHeroes - 1;
         }
 
         public static string DeleteHero(int _id)
@@ -58,11 +60,22 @@ namespace heroApi.Models
 
         private static int CheckId(int _id)
         {
+            if(_id == -1)
+            {
+                maxId++;
+                return maxId;
+            }
+
             for(int i = 0;i < Heroes.Count; i++)
             {
                 if(_id == Heroes[i].id)
                 {
                     maxId++;
+                    return maxId;
+                }
+                else if(_id > maxId)
+                {
+                    maxId = _id;
                     return maxId;
                 }
             }
